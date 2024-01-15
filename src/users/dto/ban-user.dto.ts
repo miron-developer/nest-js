@@ -1,4 +1,12 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNumber, IsString } from "class-validator";
+
 export class BanUserDto {
-    readonly userId: number;
-    readonly banReason: string;
+  @ApiProperty({ example: "1", description: "Идентификатор пользователя" })
+  @IsNumber({}, { message: "Должно быть целочисленным числом" })
+  readonly userId: number;
+
+  @ApiProperty({ example: "Хулиганство", description: "Причина бана" })
+  @IsString({ message: "Должно быть строкой" })
+  readonly banReason: string;
 }
